@@ -1,0 +1,15 @@
+<%
+c = @comment
+depth = 0
+while !c.reply_to.nil?
+  c = c.reply_to
+  depth += 1
+end
+%>
+<% puts @comment %>
+<% puts (render 'posts/comment', {:depth => depth, :comment => @comment}).squish %>
+<% if !@comment.reply_to_id.nil? %>
+  $('#<%=@comment.reply_to_id%>-panel').after("<%= escape_javascript(render 'posts/comment', {:depth => depth, :comment => @comment}) %>")
+<% else %>
+  $('#first').after("<%= escape_javascript(render 'posts/comment', {:depth => depth, :comment => @comment}) %>")
+<% end %>

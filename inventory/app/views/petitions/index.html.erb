@@ -1,0 +1,52 @@
+<% unless @petitions.nil? %>
+  <% @petitions.each do |p| %>
+    <%
+    if p.accepted.nil?
+      color = "primary"
+    else
+      if p.accepted == true
+        color = "success"
+      else
+        color = "danger"
+      end
+    end
+    %>
+    <div id='<%=p.id%>-panel' class="panel panel-<%=color%>">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <%= l(p.lend_start_date) %>
+          <div style="float:right">
+            <%= p.user.username %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+          <%= p.description %>
+          <hr>
+          <h3>
+            <%= p.product.name %>
+          </h3>
+        <div style="float:left;width:40%">
+          <h4>
+            <%= p.product.kind %>
+          </h4>
+          <%= p.product.description%>
+        </div>
+        <div style="float:right;width:30%">
+        </div>
+      </div>
+      <% if can? :manage, p and p.accepted.nil? %>
+        <div id='<%=p.id%>-footer' class="panel-footer">
+          <a class="btn btn-primary" data-remote='true' <%="disabled='true'" if p.product.lent == true %> href="/petitions/<%=p.id%>/accept">
+            <%= t("accept") %>
+          </a>
+          <a class="btn btn-danger" data-remote='true '<%="disabled='true'" if p.product.lent == true %> href="/petitions/<%=p.id%>/reject">
+            <%= t("reject") %>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  <%end %>
+  <%= paginate @petitions %>
+
+<% end %>

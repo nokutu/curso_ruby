@@ -1,0 +1,34 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div class="alert alert-danger alert-error">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <h2>El Post no se pudo guardar</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= t(message) %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :título, :class => "control-label" %>
+    <%= f.text_field :title, :placeholder => "Título", :class => 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :entradilla, :class => "control-label" %>
+    <%= f.text_area :intro, :placeholder => "Entradilla", :class => 'form-control', :rows => 2 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :cuerpo, :class => "control-label" %>
+    <%= f.text_area :body, :placeholder => "Cuerpo", :class => 'form-control', :rows => 15 %>
+  </div>
+  <div class="actions">
+    <% if @post.id.nil? %>
+      <%= f.submit "Crear Post", :class => "btn btn-primary" %>
+    <% else %>
+      <%= f.submit "Actualizar Post", :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

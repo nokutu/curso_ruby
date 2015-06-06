@@ -1,0 +1,36 @@
+<div class='col-md-offset-<%= depth %>' depth='<%=depth%>' id='<%=comment.id%>-panel'>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <b>
+        <%= comment.author.nickname %>
+      </b>
+      <%= simple_format(comment.content + "\n" + comment.created_at.to_s) %>
+    </div>
+    <% if @is_loged %>
+    <div class='panel-footer'>
+      <div class='btn-group' role='group'>
+        <div class='dropdown'>
+          <button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu1' data-toggle='dropdown' aria-expanded='true'>
+            Responder
+            <span class='caret'></span>
+          </button>
+          <ul class='dropdown-menu' role='menu' style='padding:17px;width:300px'>
+            <%= form_tag("/posts/#{comment.post.id}/newComment?reply_to_id=#{comment.id}", {:remote => 'true'}) do %>
+              <div class='form-group'>
+                <textarea class='form-control' rows='2' width='50px' name='[comment][content]' placeholder='Contenido'></textarea>
+              </div>
+              <div class='actions'>
+                <button type='submit'  class='btn btn-primary'>Comentar</button>
+              </div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <% if @user.role == 'admin' or comment.author_id == @user.id %>
+        <a href='<%= "/comments/#{comment.id}/edit" %>' class='btn btn-default'>Editar</a>
+        <a style='float:right' href='<%= "/comments/#{comment.id}/delete" %>' data-method='delete' data-remote='true' class='btn btn-danger'>Eliminar</a>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

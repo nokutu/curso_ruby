@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Apellidos:</strong>
+  <%= @client.surname %>
+</p>
+
+<p>
+  <strong>Dirección:</strong>
+  <%= @client.address %>
+</p>
+
+<p>
+  <strong>NIF:</strong>
+  <%= @client.NIF.upcase %>
+</p>
+
+<%= link_to 'Editar', edit_client_path(@client) %> |
+<%= link_to 'Atrás', clients_path %>

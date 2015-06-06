@@ -1,0 +1,27 @@
+<p>
+  <strong>Nombre:</strong>
+  <%= @author.name %>
+</p>
+
+<p>
+  <strong>Apellidos:</strong>
+  <%= @author.surname %>
+</p>
+
+<p>
+  <strong>Nombre de usuario:</strong>
+  <%= @author.nickname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @author.email %>
+</p>
+
+<p>
+  <strong>Rol:</strong>
+  <%= @author.role %>
+</p>
+
+<a href="<%= edit_author_path @author %>" class="btn btn-primary">Editar</a>
+<%= link_to '<div class="btn btn-danger">Eliminar cuenta</div>'.html_safe, @author, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>

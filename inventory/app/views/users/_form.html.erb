@@ -1,0 +1,63 @@
+<%
+if @user.id.nil?
+  url = "create"
+elsif request.original_fullpath == "/users/config"
+  url = "update_self"
+else
+  url = "#{@user.id}/update"
+end
+  %>
+
+<%= form_for(@user, url: "/users/#{url}", method: 'post') do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2>Error: </h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :username, :class => "control-label" %>
+    <%= f.text_field :username, :class => "form-control", :value => @user.username %>
+  </div>
+  <div class="form-group">
+    <%= f.label :fullname, :class => "control-label" %>
+    <%= f.text_field :fullname, :class => "form-control", :value => @user.fullname %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, :class => "control-label" %>
+    <%= f.text_field :email, :class => "form-control", :value => @user.email %>
+  </div>
+  <% if can? :manage, @user %>
+    <% if url == 'create' %>
+      <div class="form-group">
+        <%= f.label :password %>
+        <% if @validatable %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :role, :class => "control-label" %>
+      <%= f.select :role, options_for_select({"Admin" => "admin", "User" => "user"}),{}, :class => "form-control" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <% if @user.id.nil? %>
+      <%= f.submit t("create"), :class => "btn btn-primary" %>
+    <% else %>
+      <%= f.submit t("update"), :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

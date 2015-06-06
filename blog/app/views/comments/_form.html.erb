@@ -1,0 +1,24 @@
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div class="alert alert-danger" id="error_explanation">
+      <h2>El Comentario no se pudo guardar:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :contenido, :class => 'control-label' %>
+    <%= f.text_area :content, :class => 'form-control', :rows => 3 %>
+  </div>
+  <div class="actions">
+    <% if @comment.id.nil? %>
+      <%= f.submit "Crear Comentario", :class => "btn btn-primary" %>
+    <% else %>
+      <%= f.submit "Actualizar Comentario", :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

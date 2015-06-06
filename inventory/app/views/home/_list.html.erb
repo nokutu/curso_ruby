@@ -1,0 +1,57 @@
+<div id="filterrific_results">
+  <% @products.each do |p| %>
+  <%
+  if p.lent == true
+    panel = "info"
+  elsif p.lendable == false
+    panel = "default"
+  else
+    panel = "primary"
+  end
+  %>
+    <div class="panel panel-<%=panel%>" disabled='true'>
+      <div class="panel-heading">
+        <div class="panel-title">
+          <%= p.name %>
+        </div>
+      </div>
+      <div class="panel-body">
+        <% if p.image.exists? %>
+          <div class='col-md-8' style='word-wrap: break-word'>
+            <%= p.description %>
+          </div>
+          <div style="float:right">
+            <%= image_tag p.image.url(:medium) %>
+          </div>
+        <% else %>
+          <div style='word-wrap: break-word'>
+            <%= p.description %>
+          </div>
+        <% end %>
+      </div>
+      <% if current_user.role == "admin" or p.lendable %>
+        <div class="panel-footer">
+        <% if current_user.role == "admin" %>
+          <a class="btn btn-primary" href="/products/<%=p.id%>/edit">
+            <%= t("editButton") %>
+          </a>
+        <% end %>
+        <% if p.lendable == true %>
+          <% if current_user.role == "admin" %>
+            <% if p.lent == true %>
+              <a class="btn btn-primary" href="/products/<%=p.id%>/return">
+                <%= t("itsBack") %>
+              </a>
+            <% end %>
+          <% else %>
+            <a class="btn btn-primary" href="/products/<%=p.id%>/borrow" <%="disabled='true'" if p.lent == true%>>
+              <%= t("askBorrow") %>
+            </a>
+          <% end %>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% paginate @products, :theme => 'twitter-bootstrap-3' %>
+</div>

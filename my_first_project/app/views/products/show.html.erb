@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Referencia:</strong>
+  <%= @product.reference %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= number_to_currency(@product.price, format: "%n €") %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= show_stock(@product) %>
+</p>
+
+<p>
+  <strong>Gastos de envío:</strong>
+  <%= number_to_currency(@product.gastos_de_envio, format: "%n €") %>
+</p>
+
+<%= link_to 'Editar', edit_product_path(@product) %> |
+<%= link_to 'Atrás', products_path %>

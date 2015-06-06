@@ -1,0 +1,15 @@
+<%= form_tag("/products/#{@product.id}/new_petition") do%>
+  <div class="form-group">
+    <input type="text" data-provide='datepicker' data-date-format="dd/mm/yyyy" class="form-control" placeholder="<%=Petition.human_attribute_name("lend_start_date")%>" name="[petition][lend_start_date]" value="<%=@petition.lend_start_date%>">
+  </div>
+
+  <div class="form-group">
+    <textarea class="form-control" name="[petition][description]" rows="3" placeholder="<%=Petition.human_attribute_name("description")%>"><%=@petition.description%></textarea>
+  </div>
+
+  <div class="actions">
+    <button type="submit" id="btnLogin" class="btn btn-primary">
+      <%= t("create") %>
+    </button>
+  </div>
+<% end %>

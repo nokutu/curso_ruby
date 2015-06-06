@@ -1,0 +1,7 @@
+<h1>
+  <%= t("new", obj: User.model_name.human) %>
+</h1>
+
+<%= render 'form' %>
+<br>
+<%= link_to "<div class=\"btn btn-primary\">#{t("back")}</div>".html_safe, '/users/index' %>

@@ -1,0 +1,19 @@
+<ul class="nav navbar-nav navbar-right">
+  <li>
+    <a href="/posts/new">Nuevo Post</a>
+  </li>
+  <li>
+    <a data-toggle="dropdown" aria-expanded="false">
+        <%= @user.nickname %>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="/authors/<%=@user.id%>/config">Ajustes de usuario</a></li>
+      <li><a href="/logout">Logout</a></li>
+      <% if @user.role == "admin" %>
+        <li class="divider"></li>
+        <li><a href="/authors">Administrar usuarios</a></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>

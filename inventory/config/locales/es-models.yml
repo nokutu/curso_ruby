@@ -1,0 +1,27 @@
+es:
+  activerecord:
+    models:
+      user: Usuario
+      product: Producto
+      petition: Petición
+    attributes:
+      user:
+        username: Nombre de usuario
+        fullname: Nombre completo
+        email: Email
+        role: Rol
+        password: Contraseña
+        password_confirmation: Confirma la contraseña
+        remember_me: Recordarme
+      product:
+        name: Nombre
+        kind: Tipo
+        lent: Prestado
+        lendable: Prestable
+        description: Descripción
+        pricenew: Precio nuevo
+        pricenow: Precio actual
+        state: Estado
+      petition:
+        description: Descripción
+        lend_date: Fecha de préstamo

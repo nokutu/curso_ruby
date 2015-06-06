@@ -1,0 +1,23 @@
+<% if !flash[:not_registered].nil? %>
+  <div class="alert alert-danger" role="alert">
+    <h2>No se pudo registrar</h2>
+    <ul>
+    <% flash[:not_registered].each do |message| %>
+      <li><%= message[0].capitalize + " " + message[1][0] %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<% @posts.each do |p| %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <%= link_to p.title + " (" + p.comments.count.to_s + ")", post_path(p), {:style => 'font-size: 28px',} %>
+      </div>
+    </div>
+    <div class="panel-body">
+      <%= p.intro %>
+    </div>
+  </div>
+<% end %>
+<%= pagination_links(Post) %>

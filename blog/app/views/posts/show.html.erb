@@ -1,0 +1,41 @@
+<% if @is_owner %>
+  <%= link_to '<div class="btn btn-primary">Editar</div>'.html_safe, edit_post_path %>
+  <%= link_to '<div class="btn btn-danger">Eliminar</div>'.html_safe, @post, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+<% end %>
+
+<h1><%= @post.title %></h1>
+<h2><%= @post.intro %></h2>
+<p><%= simple_format(@post.body) %></p>
+<br>
+<p><b>Autor: </b><%= @post.author.name + " " + @post.author.surname %></p>
+<p><b>Fecha de creación: </b><%= @post.created_at.to_s %></p>
+<% if @is_loged %>
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        Responder
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" style="padding:17px;width:300px">
+        <%= form_tag("/posts/#{@post.id}/newComment", {:remote => 'true'}) do %>
+          <div class="form-group">
+            <textarea class="form-control" rows="2" width="50px" name="[comment][content]" placeholder="Contenido"></textarea>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Comentar</button>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<div id='first'></div>
+<% @post.comments.order(:created_at).reverse.each do |c| %>
+  <% if c.reply_to_id.nil? %>
+    <p><% c.print.each do |l|%></p>
+      <% l[0] = 5 if l[0] > 5 %>
+      <%= render 'comment', {:comment => l[1], :depth => l[0]} %>
+    <% end %>
+    <% indent = 0 %>
+  <% end %>
+<% end %>
+<br>
+<a href="/" class="btn btn-primary">Atrás</a>
