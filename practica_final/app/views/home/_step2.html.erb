@@ -1,0 +1,35 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4>Step 1/2</h4>
+  </div>
+  <%= form_tag('/step2', method: 'post') do %>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= Product.human_attribute_name("name") %></th>
+            <th><%= t("amount") %></th>
+            <th><%= t("hours_a_day") %></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @products.each do |product|%>
+          <tr>
+            <td><%=product.name%></td>
+            <td><%=text_field product.id, :amount, placeholder: '0'%></td>
+            <td><%=text_field product.id, :hours, placeholder: '0'%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class='panel-footer'>
+      <div class='row'>
+        <div style='float:right;width:6%'>
+          <%= submit_tag 'Next', class: 'btn btn-primary'%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

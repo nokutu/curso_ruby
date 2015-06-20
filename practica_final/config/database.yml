@@ -1,0 +1,6 @@
+development:
+  adapter: mysql2
+  database: practica_final_Dev
+  username: root
+  password:
+  host: localhost
