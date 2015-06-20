@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :admins
 
-  post '/step1' => 'calculations#create'
-  post '/step2' => 'table#step2'
+  post '/step1' => 'calculations#step1'
+  post '/step2' => 'calculation_lines#step2'
 
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -37,6 +37,7 @@ gem "twitter-bootstrap-rails"
 gem 'kaminari'
 gem 'filterrific'
 gem 'devise'
+gem 'jquery-ui-rails'
 
 
 group :development, :test do

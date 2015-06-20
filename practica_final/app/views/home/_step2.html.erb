@@ -1,8 +1,8 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" id='panel1'>
   <div class="panel-heading">
     <h4>Step 1/2</h4>
   </div>
-  <%= form_tag('/step2', method: 'post') do %>
+  <%= form_tag('/step2', method: 'post', remote: true) do %>
     <div class="panel-body">
       <table class="table">
         <thead>

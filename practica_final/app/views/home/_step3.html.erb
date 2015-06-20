@@ -1,0 +1,51 @@
+<script type="text/javascript">
+function back() {
+  $('#panel2').hide( "drop", { direction: "right" }, 'slow' );
+  setTimeout(function(){ $('#panel2').remove();}, 500);
+  setTimeout(function(){ $('#panel1').show('drop', {direction: 'left'}, 'slow');}, 500);
+}
+</script>
+
+<div class="panel panel-primary" style='display: none' id='panel2'>
+  <div class="panel-heading">
+    <h4>Step 2/2</h4>
+  </div>
+  <div class="panel-body">
+    <h3>Confirmation</h3>
+    <hr>
+    <h4>Your data</h4>
+    <strong><%=Calculation.human_attribute_name("name")%></strong>
+    <p><%=@calculation.name%></p>
+    <strong><%=Calculation.human_attribute_name("email")%></strong>
+    <p><%=@calculation.email%></p>
+    <% unless @calculation.phone_number == "" %></p>
+      <strong><%=Calculation.human_attribute_name("phone_number")%></strong>
+      <p><%=@calculation.phone_number%></p>
+    <% end %>
+    <strong><%=Calculation.human_attribute_name("post_code")%></strong>
+    <p><%=@calculation.post_code%></p>
+    <h4>Your formular</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Product.human_attribute_name("name") %></th>
+          <th><%= t("amount") %></th>
+          <th><%= t("hours_a_day") %></th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @calculation.calculation_lines.each do |calculation_line| %>
+          <tr>
+            <td><%=calculation_line.product.name%></td>
+            <td><%=calculation_line.amount%></td>
+            <td><%=calculation_line.hours%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class='panel-footer'>
+    <button class='btn btn-primary' onclick="back()">Back</button>
+  </div>
+</div>

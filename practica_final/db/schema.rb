@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150620092816) do
+ActiveRecord::Schema.define(version: 20150620173901) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20150620092816) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "calculation_lines", force: :cascade do |t|
+    t.integer "calculation_id", limit: 4
+    t.integer "product_id",     limit: 4
+    t.integer "hours",          limit: 4
+    t.integer "amount",         limit: 4
+  end
+
+  add_index "calculation_lines", ["calculation_id"], name: "index_calculation_lines_on_calculation_id", using: :btree
+  add_index "calculation_lines", ["product_id"], name: "index_calculation_lines_on_product_id", using: :btree
+
   create_table "calculations", force: :cascade do |t|
     t.string  "name",         limit: 255
     t.integer "post_code",    limit: 4
@@ -46,15 +56,5 @@ ActiveRecord::Schema.define(version: 20150620092816) do
     t.integer "power_incandescent", limit: 4
     t.integer "power_led",          limit: 4
   end
-
-  create_table "tables", force: :cascade do |t|
-    t.integer "table_id",   limit: 4
-    t.integer "product_id", limit: 4
-    t.integer "hours",      limit: 4
-    t.integer "amount",     limit: 4
-  end
-
-  add_index "tables", ["product_id"], name: "index_tables_on_product_id", using: :btree
-  add_index "tables", ["table_id"], name: "index_tables_on_table_id", using: :btree
 
 end
