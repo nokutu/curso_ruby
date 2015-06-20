@@ -1,9 +1,9 @@
 <script type="text/javascript">
-function back() {
-  $('#panel2').hide( "drop", { direction: "right" }, 'slow' );
-  setTimeout(function(){ $('#panel2').remove();}, 500);
-  setTimeout(function(){ $('#panel1').show('drop', {direction: 'left'}, 'slow');}, 500);
-}
+  function back() {
+    $('#panel2').hide( "drop", { direction: "right" }, 'slow' );
+    setTimeout(function(){ $('#panel1').show('drop', {direction: 'left'}, 'slow');}, 500);
+    setTimeout(function(){ $('#panel2').remove();}, 1000);
+  }
 </script>
 
 <div class="panel panel-primary" style='display: none' id='panel2'>
@@ -46,6 +46,11 @@ function back() {
     </table>
   </div>
   <div class='panel-footer'>
-    <button class='btn btn-primary' onclick="back()">Back</button>
+    <div class='row'>
+      <button class='btn btn-primary' onclick="back()">Back</button>
+      <div style='float:right;width:6%'>
+        <a class='btn btn-primary' href='/result'>Finish</a>
+      </div>
+    </div>
   </div>
 </div>

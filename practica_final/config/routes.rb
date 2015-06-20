@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   post '/step1' => 'calculations#step1'
   post '/step2' => 'calculation_lines#step2'
+  get '/result' => 'home#result'
+  get '/again' => 'home#again'
 
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

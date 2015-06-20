@@ -1,0 +1,20 @@
+<script>
+  function again() {
+    <% session[:calculation] = nil %>
+    redirect_to(":controller => 'home', :action => 'index'")
+  }
+</script>
+
+<div class="panel panel-primary" id='result'>
+  <div class='panel-heading'>
+    <font size='6'>Congratulations</font>
+  </div>
+  <div class='panel-body'>
+    <p>Power difference: <%=@calculation.get_power_diff%></p>
+    <p>Led cost: <%=@calculation.get_cost%></p>
+    <p>Amortization days: <%=@calculation.get_amortization_time%></p>
+  </div>
+  <div class='panel-footer'>
+    <a class='btn btn-primary' href="/again">Do it again</a>
+  </div>
+</div>
