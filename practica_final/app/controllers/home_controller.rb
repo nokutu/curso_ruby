@@ -16,4 +16,11 @@ class HomeController < ApplicationController
                                     :post_code => @calculation.post_code})
     redirect_to "/"
   end
+
+  def addline
+    @id = params[:id]
+    respond_to do |format|
+      format.js{}
+    end
+  end
 end

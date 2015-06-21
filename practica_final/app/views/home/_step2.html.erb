@@ -1,7 +1,8 @@
 <script>
-  function add_line() {
-    $('#body').append("<tr><td>Uno</td><td>Dos</td><td>Tres</td></tr>")
-  }
+  $(document).ready(function() {
+    $('#body').append("<%= new_line(@id) %>")
+    $('#addlinebutton').attr('href', "/addline/<%=@id.to_i+1%>")
+  });
 </script>
 
 <div class="col-md-10 col-md-offset-1">
@@ -21,18 +22,12 @@
             </tr>
           </thead>
           <tbody id='body'>
-          <% @products.each do |product|%>
-            <tr>
-              <td><%=product.name%></td>
-              <td><%=text_field product.id, :amount, placeholder: '0'%></td>
-              <td><%=text_field product.id, :hours, placeholder: '0'%></td>
-            </tr>
-          <% end %>
+
           </tbody>
         </table>
         <div class="row">
           <div style="text-align:center">
-            <span class='btn btn-primary' onclick='add_line()'>New product</span>
+            <%= link_to 'New product', '/addline/0', remote: true, class: 'btn btn-primary', id: 'addlinebutton' %>
           </div>
         </div>
       </div>
