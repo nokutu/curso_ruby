@@ -1,18 +1,17 @@
-<script>
-  function again() {
-    <% session[:calculation] = nil %>
-    redirect_to(":controller => 'home', :action => 'index'")
-  }
-</script>
-
-<div class="panel panel-primary" id='result'>
+<div class="panel panel-<%=@calculation.get_monthly_save > 0 ? 'success' : 'danger'%>" id='result'>
   <div class='panel-heading'>
     <font size='6'>Congratulations</font>
   </div>
   <div class='panel-body'>
-    <p>Power difference: <%=@calculation.get_power_diff%></p>
-    <p>Led cost: <%=@calculation.get_cost%></p>
-    <p>Amortization days: <%=@calculation.get_amortization_time%></p>
+    <p>
+      You will save every month <%=@calculation.get_monthly_save.round(2)%>€, as the
+      power difference will be <%=@calculation.get_power_diff%>W.
+    </p>
+    <p>The instalation will cost you <%=@calculation.get_cost%>€</p>
+    <p>
+      You will need <%=@calculation.amortization_string%> in order to amortize the investment.
+      Take into account that the average led life is between 15 and 25 years.
+    </p>
   </div>
   <div class='panel-footer'>
     <a class='btn btn-primary' href="/again">Do it again</a>

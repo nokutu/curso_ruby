@@ -1,12 +1,7 @@
 class HomeController < ApplicationController
   def index
-    if session[:calculation].nil?
-      @calculation = Calculation.new
-    else
-      @calculation = Calculation.find(session[:calculation])
-    end
+    @calculation = Calculation.find_or_create_by(:id => session[:calculation])
     @products = Product.all.order(:name)
-    render "home/index"
   end
 
   def result
@@ -14,7 +9,11 @@ class HomeController < ApplicationController
   end
 
   def again
-    session[:calculation] = nil
+    @calculation = Calculation.find(session[:calculation])
+    @calculation = Calculation.new({:email => @calculation.email,
+                                    :phone_number => @calculation.phone_number,
+                                    :name => @calculation.name,
+                                    :post_code => @calculation.post_code})
     redirect_to "/"
   end
 end

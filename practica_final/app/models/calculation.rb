@@ -26,11 +26,23 @@ class Calculation < ActiveRecord::Base
   end
 
   def get_amortization_time
-    (get_cost / ((get_power_diff / 1000.0) * ELECTRICITY_PRICE)).to_int + 1
+    ((get_cost / ((get_power_diff / 1000.0) * ELECTRICITY_PRICE))/30).to_int + 1
   end
 
   def get_monthly_save
     ((get_power_diff / 1000.0) * ELECTRICITY_PRICE) * 30
   end
 
+  def amortization_string
+    ret = ""
+    if get_amortization_time > 12
+      ret += (get_amortization_time / 12).to_s + " years"
+      if get_amortization_time.modulo(12) != 0
+        ret += " and " + get_amortization_time.modulo(12).to_s + " months"
+      end
+    else
+      ret += get_amortization_time.modulo.to_s + " months"
+    end
+    ret
+  end
 end
