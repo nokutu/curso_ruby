@@ -1,3 +1,17 @@
-$("#panel1").after("<%= escape_javascript(render 'home/step3' )%>")
-$('#panel1').hide( "drop", { direction: "left" },'slow' );
-setTimeout(function(){$('#panel2').show('drop', {direction: 'right'}, 'slow')}, 600)
+<% if @errors.empty? %>
+  $("#panel1").after("<%= escape_javascript(render 'home/step3' )%>")
+  $('#panel1').hide( "drop", { direction: "left" },'slow' );
+  setTimeout(function(){$('#panel2').show('drop', {direction: 'right'}, 'slow')}, 600)
+<% else %>
+  <% @errors.each do |i| %>
+    $("#line-<%=i%>").effect('highlight')
+    if (isNaN($('#amount-<%=i%>').value)) {
+      $('#amount-<%=i%>').val(null)
+      $('#amount-<%=i%>').attr('placeholder', 'Write a number')
+    }
+    if (isNaN($('#hours-<%=i%>').value)) {
+      $('#hours-<%=i%>').val(null)
+      $('#hours-<%=i%>').attr('placeholder', 'Write a number')
+    }
+  <% end %>
+<% end %>

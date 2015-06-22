@@ -1,6 +1,5 @@
 class CalculationsController < ApplicationController
   def step1
-    puts params
     @calculation = Calculation.new(calculation_params)
     @calculation.save
     @errors = @calculation.errors

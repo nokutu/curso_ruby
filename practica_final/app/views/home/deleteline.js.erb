@@ -1,0 +1,3 @@
+$('#line-<%=@id%>').append("<%=escape_javascript(hidden_field @id, :remove, :value => true)%>")
+$('#select-<%=@id%>').val('0')
+$('#line-<%=@id%>').hide()

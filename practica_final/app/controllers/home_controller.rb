@@ -23,4 +23,11 @@ class HomeController < ApplicationController
       format.js{}
     end
   end
+
+  def deleteline
+    @id = params[:id]
+    respond_to do |format|
+      format.js{}
+    end
+  end
 end

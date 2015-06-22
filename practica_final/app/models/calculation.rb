@@ -45,4 +45,8 @@ class Calculation < ActiveRecord::Base
     end
     ret
   end
+
+  def get_code
+    #Use hashids
+  end
 end

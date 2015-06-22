@@ -2,23 +2,27 @@ class CalculationLinesController < ApplicationController
 
   def step2
     @calculation = Calculation.find(session[:calculation])
-    calculation_id = @calculation.id
-
+    CalculationLine.where(:calculation_id => @calculation.id).destroy_all
+    @errors = []
     i = 0
     while true
       if params[i.to_s].nil?
         break
+      elsif !params[i.to_s][:remove].nil?
+        i += 1
+        next
+      elsif params[i.to_s][:product_id] == "0"
+        @errors += [i]
+        i += 1
+        next
       end
-      calculation_line = CalculationLine.find_or_create_by(:calculation_id => calculation_id,
+
+      calculation_line = CalculationLine.find_or_create_by(:calculation_id => @calculation.id,
                                                            :product_id => params[i.to_s][:product_id])
       calculation_line.assign_attributes(:hours => params[i.to_s][:hours],
                                          :amount => params[i.to_s][:amount])
-      puts calculation_line.product_id
-
-      unless calculation_line.hours.nil? or calculation_line.amount.nil?
-        if (calculation_line.hours.to_i > 0  and calculation_line.amount.to_i > 0)
-          calculation_line.save!
-        end
+      unless calculation_line.save
+        @errors += [i]
       end
       i += 1
     end

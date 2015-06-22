@@ -1,7 +1,6 @@
 <script>
   $(document).ready(function() {
-    $('#body').append("<%= new_line(@id) %>")
-    $('#addlinebutton').attr('href', "/addline/<%=@id.to_i+1%>")
+    $('#body').append("<%= new_line(0) %>")
   });
 </script>
 
@@ -27,13 +26,13 @@
         </table>
         <div class="row">
           <div style="text-align:center">
-            <%= link_to 'New product', '/addline/0', remote: true, class: 'btn btn-primary', id: 'addlinebutton' %>
+            <%= link_to 'New product', '/addline/1', remote: true, class: 'btn btn-primary', id: 'addlinebutton' %>
           </div>
         </div>
       </div>
       <div class='panel-footer'>
         <div class='row'>
-          <div style='float:right;width:7%'>
+          <div style='float:right;width:9%'>
             <%= submit_tag 'Next', class: 'btn btn-primary'%>
           </div>
         </div>

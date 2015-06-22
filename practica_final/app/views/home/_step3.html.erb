@@ -36,19 +36,21 @@
           </tr>
         </thead>
         <tbody>
-          <% @calculation.calculation_lines.each do |calculation_line| %>
-            <tr>
+          <% i = 0 %>
+          <% @calculation.calculation_lines.joins(:product).order('products.name').each do |calculation_line| %>
+            <tr id='line-<%=i%>'>
               <td><%=calculation_line.product.name%></td>
               <td><%=calculation_line.amount%></td>
               <td><%=calculation_line.hours%></td>
             </tr>
+            <% i += 1 %>
           <% end %>
         </tbody>
       </table>
     </div>
     <div class='panel-footer'>
       <button class='btn btn-primary' onclick="back()">Back</button>
-      <div style='float:right;width:7%'>
+      <div style='float:right;width:9%'>
         <a class='btn btn-primary' href='/result'>Finish</a>
       </div>
     </div>

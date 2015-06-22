@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/result' => 'home#result'
   get '/again' => 'home#again'
   get '/addline/:id' => 'home#addline'
+  delete '/deleteline/:id' => 'home#deleteline'
 
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
