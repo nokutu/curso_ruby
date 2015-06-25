@@ -1,4 +1,4 @@
-<% if @errors.empty? %>
+<% if @errors.empty? && !@calculation.calculation_lines.empty? %>
   $("#panel1").after("<%= escape_javascript(render 'home/step3' )%>")
   $('#panel1').hide( "drop", { direction: "left" },'slow' );
   setTimeout(function(){$('#panel2').show('drop', {direction: 'right'}, 'slow')}, 600)
@@ -8,10 +8,12 @@
     if (isNaN($('#amount-<%=i%>').value)) {
       $('#amount-<%=i%>').val(null)
       $('#amount-<%=i%>').attr('placeholder', 'Write a number')
+      setTimeout(function(){$('#amount-<%=i%>').attr('placeholder', '0')}, 1500)
     }
     if (isNaN($('#hours-<%=i%>').value)) {
       $('#hours-<%=i%>').val(null)
       $('#hours-<%=i%>').attr('placeholder', 'Write a number')
+      setTimeout(function(){$('#hours-<%=i%>').attr('placeholder', '0')}, 1500)
     }
   <% end %>
 <% end %>

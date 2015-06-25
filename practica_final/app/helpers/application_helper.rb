@@ -1,4 +1,7 @@
 module ApplicationHelper
+
+  HASHIDS = Hashids.new("Password")
+
   def new_line(i)
     ret = ""
     ret += "<tr id = line-#{i}><td>"
@@ -21,5 +24,13 @@ module ApplicationHelper
       arr += [[product.name, product.id]]
     end
     arr
+  end
+
+  def encode var
+    ApplicationHelper::HASHIDS.encode(var)
+  end
+
+  def decode var
+    ApplicationHelper::HASHIDS.decode(var)
   end
 end

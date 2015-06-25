@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   post '/step1' => 'calculations#step1'
   post '/step2' => 'calculation_lines#step2'
+  post '/code' => 'calculations#code'
   get '/result' => 'home#result'
   get '/again' => 'home#again'
   get '/addline/:id' => 'home#addline'

@@ -1,31 +1,55 @@
-<%= form_for(@calculation, url: "/step1", method: 'post', remote: true) do |f| %>
-  <div class="modal-body">
-    <div class="form-group">
-      <%= f.label :name, :class => "control-label" %>
-      <%= f.text_field :name, :class => "form-control",
-                              :value => @calculation.name,
-                              :id => :name %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email, :class => "control-label" %>
-      <%= f.email_field :email, :class => "form-control",
-                                :value => @calculation.email,
-                                :id => :email %>
-    </div>
-    <div class="form-group">
-      <%= f.label :'phone_number_(optional)', :class => "control-label" %>
-      <%= f.text_field :phone_number, :class => "form-control",
-                                      :value => @calculation.phone_number,
-                                      :id => :phone_number %>
-    </div>
-    <div class="form-group">
-      <%= f.label :post_code, :class => "control-label" %>
-      <%= f.text_field :post_code, :class => "form-control",
-                                   :value => @calculation.post_code,
-                                   :id => :post_code %>
-    </div>
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" class="active"><a href="#new" aria-controls="new" role="tab" data-toggle="tab">New client</a></li>
+    <li role="presentation"><a href="#code" aria-controls="code" role="tab" data-toggle="tab">Use code</a></li>
+  </ul>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="new">
+    <%= form_for(@calculation, url: "/step1", method: 'post', remote: true) do |f| %>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= f.label :name, :class => "control-label" %>
+          <%= f.text_field :name, :class => "form-control",
+                                  :value => @calculation.name,
+                                  :id => :name %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, :class => "control-label" %>
+          <%= f.email_field :email, :class => "form-control",
+                                    :value => @calculation.email,
+                                    :id => :email %>
+        </div>
+        <div class="form-group">
+          <%= f.label :'phone_number_(optional)', :class => "control-label" %>
+          <%= f.text_field :phone_number, :class => "form-control",
+                                          :value => @calculation.phone_number,
+                                          :id => :phone_number %>
+        </div>
+        <div class="form-group">
+          <%= f.label :post_code, :class => "control-label" %>
+          <%= f.text_field :post_code, :class => "form-control",
+                                       :value => @calculation.post_code,
+                                       :id => :post_code %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Start saving", :class =>"btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-  <div class="modal-footer">
-    <%= f.submit "Start saving", :class =>"btn btn-primary" %>
+  <div role="tabpanel" class="tab-pane" id="code">
+    <%= form_for(@calculation, url: "/code", method: 'post', remote: true) do |f| %>
+    <div class="modal-body">
+      <div class="form-group">
+        <%= f.label :code, :class => "control-label" %>
+        <%= f.text_field :code, :class => "form-control",
+                                :value => @calculation.code,
+                                :id => :code %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit "Continue", :class =>"btn btn-primary" %>
+    </div>
+    <% end %>
   </div>
-<% end %>
+</div>
