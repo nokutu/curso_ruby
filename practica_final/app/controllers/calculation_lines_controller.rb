@@ -17,7 +17,7 @@ class CalculationLinesController < ApplicationController
         next
       end
 
-      calculation_line = CalculationLine.find_or_create_by(:calculation_id => @calculation.id,
+      calculation_line = CalculationLine.new(:calculation_id => @calculation.id,
                                                            :product_id => params[i.to_s][:product_id])
       calculation_line.assign_attributes(:hours => params[i.to_s][:hours],
                                          :amount => params[i.to_s][:amount])

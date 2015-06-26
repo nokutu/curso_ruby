@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include ApplicationHelper
+
   def index
     @calculation = Calculation.find_or_create_by(:id => session[:calculation])
     @products = Product.all.order(:name)

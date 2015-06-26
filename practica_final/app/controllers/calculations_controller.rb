@@ -12,10 +12,15 @@ class CalculationsController < ApplicationController
   end
 
   def code
-    @calculation = Calculation.find(decode(params[:code])).first
-
-    unless @calculation.nil?
+    calculation = Calculation.find(decode(params[:code])).first
+    unless calculation.nil?
+      @calculation = Calculation.new(:name => calculation.name,
+                                     :phone_number => calculation.phone_number,
+                                     :email => calculation.email,
+                                     :post_code => calculation.post_code)
+      @calculation.save
       session[:calculation] = @calculation.id
+      session[:oldCalculation] = calculation.id
     end
     respond_to do |format|
       format.js{}

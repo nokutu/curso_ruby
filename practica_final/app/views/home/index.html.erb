@@ -2,7 +2,7 @@
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        
+
           <%= render 'step1' %>
       </div>
     </div>
@@ -13,6 +13,12 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('#myModal').modal({keyboard: false, backdrop: 'static'})
+    });
+  </script>
+<%elsif !session[:oldCalculation].nil?%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      <%= render 'calculations/code.js' %>
     });
   </script>
 <% end %>

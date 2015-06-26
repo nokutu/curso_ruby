@@ -5,12 +5,12 @@
 <% else %>
   <% @errors.each do |i| %>
     $("#line-<%=i%>").effect('highlight')
-    if (isNaN($('#amount-<%=i%>').value)) {
+    if (isNaN($('#amount-<%=i%>').val()) || $('#amount-<%=i%>').val() == "") {
       $('#amount-<%=i%>').val(null)
       $('#amount-<%=i%>').attr('placeholder', 'Write a number')
       setTimeout(function(){$('#amount-<%=i%>').attr('placeholder', '0')}, 1500)
     }
-    if (isNaN($('#hours-<%=i%>').value)) {
+    if (isNaN($('#hours-<%=i%>').val()) || $('#hours-<%=i%>').val() == "") {
       $('#hours-<%=i%>').val(null)
       $('#hours-<%=i%>').attr('placeholder', 'Write a number')
       setTimeout(function(){$('#hours-<%=i%>').attr('placeholder', '0')}, 1500)
