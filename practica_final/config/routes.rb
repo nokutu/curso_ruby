@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/result' => 'home#result'
   get '/again' => 'home#again'
   get '/addline/:id' => 'home#addline'
+  get '/reset' => 'home#reset'
   delete '/deleteline/:id' => 'home#deleteline'
 
   root 'home#index'

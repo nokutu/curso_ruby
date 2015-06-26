@@ -17,6 +17,11 @@ class HomeController < ApplicationController
     redirect_to "/"
   end
 
+  def reset
+    session[:calculation] = nil
+    redirect_to "/"
+  end
+
   def addline
     @id = params[:id]
     respond_to do |format|

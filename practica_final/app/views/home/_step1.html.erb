@@ -38,17 +38,16 @@
     <% end %>
   </div>
   <div role="tabpanel" class="tab-pane" id="code">
-    <%= form_for(@calculation, url: "/code", method: 'post', remote: true) do |f| %>
+    <%= form_tag("/code", method: 'post', remote: true) do %>
     <div class="modal-body">
       <div class="form-group">
-        <%= f.label :code, :class => "control-label" %>
-        <%= f.text_field :code, :class => "form-control",
-                                :value => @calculation.code,
-                                :id => :code %>
+        <%= label_tag :code, nil, :class => "control-label" %>
+        <%= text_field_tag :code, nil, :class => "form-control",
+                                :id => :code_text %>
       </div>
     </div>
     <div class="modal-footer">
-      <%= f.submit "Continue", :class =>"btn btn-primary" %>
+      <%= submit_tag "Continue", :class =>"btn btn-primary" %>
     </div>
     <% end %>
   </div>

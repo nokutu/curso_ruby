@@ -12,12 +12,11 @@ class CalculationsController < ApplicationController
   end
 
   def code
-    puts "--------------------------"
-    puts decode(params[:calculation][:code])
-    puts params[:calculation][:code]
-    @calculation = Calculation.find(decode(params[:calculation][:code])).first
-    puts @calculation.id
-    session[:calculation] = @calculation.id
+    @calculation = Calculation.find(decode(params[:code])).first
+
+    unless @calculation.nil?
+      session[:calculation] = @calculation.id
+    end
     respond_to do |format|
       format.js{}
     end
