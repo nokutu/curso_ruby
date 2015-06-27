@@ -1,0 +1,3 @@
+[submodule "led-calculator"]
+	path = led-calculator
+	url = https://github.com/nokutu/led-calculator
