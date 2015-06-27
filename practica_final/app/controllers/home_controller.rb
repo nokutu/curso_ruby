@@ -21,6 +21,7 @@ class HomeController < ApplicationController
 
   def reset
     session[:calculation] = nil
+    session[:oldCalculation] = nil
     redirect_to "/"
   end
 

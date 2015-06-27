@@ -71,3 +71,5 @@ Product.create(name: "Panel 600x600 mm.",
               power_led: 40,
               power_incandescent: 72,
               price_led: 78.26)
+
+Admin.create!(email: 'root@root.com', password: 'rootroot')
