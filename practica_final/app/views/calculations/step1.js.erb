@@ -1,7 +1,0 @@
-<% if @errors.size == 0 %>
-  $('#myModal').modal('hide')
-<% else %>
-  <% @errors.each do |attr| %>
-      $('#<%=attr%>').effect('highlight')
-  <% end %>
-<% end %>
